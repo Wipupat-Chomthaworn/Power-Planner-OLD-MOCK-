@@ -1,12 +1,52 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <title>Document</title>
 </head>
 <body>
-    
+<template>
+        <div>
+          <to-do-list></to-do-list>
+        </div>
+      </template>
+
 </body>
+
+<script>
+
+// import app from 'Power-Planner\app.vue';
+// import from 'Power-Planner\vuedraggble.vue';
+export default {
+// import ToDoList from 'Power-Planner\ToDoList.vue';
+  components: {
+    ToDoList,
+  },
+};
+</script>
+
+</html> -->
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My To-Do List</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="Power-Planner\vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <to-do-list></to-do-list>
+    </div>
+    <script>
+      var app = new Vue({
+        el: '#app',
+      });
+    </script>
+  </body>
 </html>
+
