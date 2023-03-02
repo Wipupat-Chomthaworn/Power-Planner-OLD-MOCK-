@@ -111,7 +111,7 @@ export default {
             });
         },
 
-filteredItems() {
+        filteredItems() {
             if (this.filterBy === "none") {
                 return this.sortedItems;
             } else if (this.filterBy === "complete") {
