@@ -23,7 +23,8 @@
                 <button v-if="!item.status" @click="completeItem(index)">
                     Make it complete
                 </button>
-                <button @click="deleteItem(index)">Delete It!</button>
+                <button id="button" @click="deleteItem(index)">Delete It!</button>
+
             </li>
 
         </ul>
@@ -31,7 +32,7 @@
         <button @click="importData">Load My ToDoList!!!</button>
     </div>
 </template>
-  
+
 <script>
 export default {
     data() {
@@ -119,5 +120,8 @@ export default {
 
 .late {
     color: red;
+}
+#button {
+    padding: 2%;
 }
 </style>

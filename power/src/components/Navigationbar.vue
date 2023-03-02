@@ -1,7 +1,7 @@
 <template>
     <nav class="navigation-bar">
       <div class="logo">
-        <img src="./assets/PP logo.png" alt="Logo">
+        <img src="../assets/PP logo.png" alt="Logo">
       </div>
       <div class="links">
         <router-link to="/calendar">Calendar</router-link>
@@ -10,7 +10,7 @@
       </div>
     </nav>
   </template>
-  
+
   <script>
     export default {
       name: 'NavigationBar',
@@ -24,35 +24,35 @@
       }
     }
   </script>
-  
+
   <style scoped>
     .navigation-bar {
       display: flex;
+      flex: 1;
       align-items: center;
       justify-content: space-between;
-      padding: 1rem;
+      padding: 4rem 3rem;
       background-color: #f2f2f2;
     }
-  
+
     .logo img {
-      max-width: 100%;
-      height: auto;
+      width: 2rem;
+      height: 2rem;
     }
-  
+
     .links {
       display: flex;
       gap: 1rem;
     }
-  
+
     .links a {
       color: #333;
       text-decoration: none;
       font-weight: bold;
       font-size: 1.2rem;
     }
-  
+
     .links a:hover {
       color: #0066cc;
     }
   </style>
-  
