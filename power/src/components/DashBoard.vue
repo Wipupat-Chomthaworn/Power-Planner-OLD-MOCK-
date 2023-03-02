@@ -10,7 +10,7 @@
         <div id="complete">
             <p>Complete!</p>
             <ul v-for="item in items">
-                <li v-if="item.status='c'">
+                <li v-if="item.status='complete'">
                 </li>
             </ul>
         </div>

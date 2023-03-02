@@ -1,8 +1,8 @@
 
 <template>
-  <div>
+
     <NavigationBar></NavigationBar>
-  </div>
+
   <div>
     <to-do-list></to-do-list>
   </div>
