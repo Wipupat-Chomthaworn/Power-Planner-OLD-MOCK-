@@ -1,6 +1,9 @@
 
 <template>
   <div>
+    <NavigationBar></NavigationBar>
+  </div>
+  <div>
     <to-do-list></to-do-list>
   </div>
   <div>
@@ -11,11 +14,14 @@
   
 <script>
 import ToDoList from './components/ToDoList.vue';
+import NavigationBar from './components/Navigationbar.vue';
+
 
 
 export default {
   components: {
     ToDoList,
+    NavigationBar,
   },
 };
 </script>

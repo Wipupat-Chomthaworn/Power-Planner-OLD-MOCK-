@@ -1,6 +1,11 @@
 <template>
     <div>
         <h2>My To-Do List</h2>
+        <span>Sort by:
+    <select v-model="sortBy">
+      <option value="name">Name</option>
+      <option value="dueDate">Due Date</option>
+    </select></span>
         <form @submit.prevent="addItem">
             <input v-model="newItem.name" placeholder="Add a new item" />
             <input v-model="newItem.dueDate" type="date" placeholder="Due Date" />
@@ -12,7 +17,7 @@
                 Task: " {{ item.name }} " <span :class="checkDate(item)"> => Due Date Is : {{ item.dueDate }}</span>
                 <button @click="deleteItem(index)">Delete It!</button>
             </li> -->
-            <li v-for="(item, index) in items" :key="index">
+            <li v-for="(item, index) in sortedItems" :key="index">
                 Task: "{{ item.name }}" =>> <p :class="checkDate(item)"> Due Date Is : {{ item.dueDate }}
                 </p>
                 <button v-if="!item.status" @click="completeItem(index)">
@@ -37,6 +42,7 @@ export default {
                 statue: "",
             },
             items: [],
+            sortBy: "name", // default sort order is by name
         };
     },
     methods: {
@@ -66,7 +72,7 @@ export default {
         },
         checkDate(item) {
             let date = new Date(item.dueDate);
-            console.log("Checking", new Date(date.getFullYear(), date.getMonth(), date.getDate()) < new Date(), "date", new Date(date.getFullYear(), date.getMonth(), date.getDate()), "||| newdate", new Date())
+            // console.log("Checking", new Date(date.getFullYear(), date.getMonth(), date.getDate()) < new Date(), "date", new Date(date.getFullYear(), date.getMonth(), date.getDate()), "||| newdate", new Date())
             if (item.status == "complete") {
                 console.log("complete");
                 return "completedItem";
@@ -88,6 +94,18 @@ export default {
             this.items[index].status = "complete";
         },
     },
+    computed: {
+        sortedItems() {
+            return this.items.slice().sort((a, b) => {
+                if (this.sortBy === "name") {
+                    return a.name.localeCompare(b.name);
+                } else if (this.sortBy === "dueDate") {
+                    return new Date(a.dueDate) - new Date(b.dueDate);
+                }
+            });
+        },
+    },
+
 };
 </script>
 <style scoped>
