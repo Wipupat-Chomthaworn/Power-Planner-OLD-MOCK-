@@ -65,13 +65,6 @@
 
     .links a {
       color: #000;
-      color: #000;
-  position: absolute;
-  margin-left: 5px;
-  margin-top: auto;
-  margin-bottom: auto;
-  font-weight: bold;
-  top: 20%;
       text-decoration: none;
       font-weight: bold;
       font-size: 1.2rem;
