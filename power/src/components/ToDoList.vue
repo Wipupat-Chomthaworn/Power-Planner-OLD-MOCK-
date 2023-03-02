@@ -2,10 +2,19 @@
     <div>
         <h2>My To-Do List</h2>
         <span>Sort by:
-    <select v-model="sortBy">
-      <option value="name">Name</option>
-      <option value="dueDate">Due Date</option>
-    </select></span>
+            <select v-model="sortBy">
+                <option value="name">Name</option>
+                <option value="dueDate">Due Date</option>
+            </select>
+        </span>
+        <span>
+            Filter by:
+            <select v-model="filterBy">
+                <option value="none">None</option>
+                <option value="late">Late</option>
+                <option value="complete">Completed</option>
+            </select>
+        </span>
         <form @submit.prevent="addItem">
             <input v-model="newItem.name" placeholder="Add a new item" />
             <input v-model="newItem.dueDate" type="date" placeholder="Due Date" />
@@ -17,16 +26,14 @@
                 Task: " {{ item.name }} " <span :class="checkDate(item)"> => Due Date Is : {{ item.dueDate }}</span>
                 <button @click="deleteItem(index)">Delete It!</button>
             </li> -->
-            <li v-for="(item, index) in sortedItems" :key="index">
-                Task: "{{ item.name }}" =>> <p :class="checkDate(item)"> Due Date Is : {{ item.dueDate }}
-                </p>
+            <li v-for="(item, index) in filteredItems" :key="index">
+                Task: "{{ item.name }}" =>>
+                <p :class="checkDate(item)">Due Date Is : {{ item.dueDate }}</p>
                 <button v-if="!item.status" @click="completeItem(index)">
                     Make it complete
                 </button>
                 <button id="button" @click="deleteItem(index)">Delete It!</button>
-
             </li>
-
         </ul>
         <button @click="exportData">Save It!!!</button>
         <button @click="importData">Load My ToDoList!!!</button>
@@ -44,6 +51,7 @@ export default {
             },
             items: [],
             sortBy: "name", // default sort order is by name
+            filterBy: "none", // default filter is none
         };
     },
     methods: {
@@ -52,7 +60,6 @@ export default {
                 this.items.push({
                     name: this.newItem.name,
                     dueDate: this.newItem.dueDate,
-
                 });
                 this.newItem.name = "";
                 this.newItem.dueDate = "";
@@ -78,18 +85,16 @@ export default {
                 console.log("complete");
                 return "completedItem";
                 // return true;
-            }
-            else if (new Date(date.getFullYear(), date.getMonth(), date.getDate()) < new Date()) {
+            } else if (
+                new Date(date.getFullYear(), date.getMonth(), date.getDate()) <
+                new Date()
+            ) {
                 console.log("late");
                 return "late";
-            }
-            else {
+            } else {
                 console.log("ontime");
-                return 'ontime';
+                return "ontime";
             }
-
-
-
         },
         completeItem(index) {
             this.items[index].status = "complete";
@@ -97,7 +102,7 @@ export default {
     },
     computed: {
         sortedItems() {
-            return this.items.slice().sort((a, b) => {
+            return this.items.sort((a, b) => {
                 if (this.sortBy === "name") {
                     return a.name.localeCompare(b.name);
                 } else if (this.sortBy === "dueDate") {
@@ -105,8 +110,21 @@ export default {
                 }
             });
         },
-    },
 
+filteredItems() {
+            if (this.filterBy === "none") {
+                return this.sortedItems;
+            } else if (this.filterBy === "complete") {
+                return this.sortedItems.filter(item => item.status === "complete");
+            } else if (this.filterBy === "late") {
+                return this.sortedItems.filter(item => {
+                    let date = new Date(item.dueDate);
+                    return (item.status !== "complete" && new Date(date.getFullYear(), date.getMonth(), date.getDate()) < new Date());
+                });
+            }
+        }
+
+    },
 };
 </script>
 <style scoped>
@@ -121,6 +139,7 @@ export default {
 .late {
     color: red;
 }
+
 #button {
     padding: 2%;
 }

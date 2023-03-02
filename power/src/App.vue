@@ -11,7 +11,7 @@
 
   </div>
 </template>
-  
+
 <script>
 import ToDoList from './components/ToDoList.vue';
 import NavigationBar from './components/Navigationbar.vue';
@@ -25,12 +25,12 @@ export default {
   },
 };
 </script>
-  
-  
+
+
   <!-- <script setup>
   import HelloWorld from './components/HelloWorld.vue'
   </script>
-  
+
   <template>
     <div>
       <a href="https://vitejs.dev" target="_blank">
@@ -42,7 +42,7 @@ export default {
     </div>
     <HelloWorld msg="Vite + Vue" />
   </template>
-  
+
   <style scoped>
   .logo {
     height: 6em;
@@ -57,6 +57,5 @@ export default {
     filter: drop-shadow(0 0 2em #42b883aa);
   }
   </style> -->
-  
-  
-  
+
+

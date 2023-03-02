@@ -28,16 +28,16 @@
   <style scoped>
     .navigation-bar {
       display: flex;
-      flex: 1;
       align-items: center;
       justify-content: space-between;
-      padding: 4rem 3rem;
+      padding: 0;
       background-color: #f2f2f2;
     }
 
     .logo img {
-      width: 2rem;
-      height: 2rem;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 100%;
     }
 
     .links {
