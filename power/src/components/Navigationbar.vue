@@ -1,7 +1,7 @@
 <template>
     <nav class="navigation-bar">
       <div class="logo">
-        <img src="./assets/logo-social.png" alt="Logo">
+        <img src="./assets/PP logo.png" alt="Logo">
       </div>
       <div class="links">
         <router-link to="/calendar">Calendar</router-link>
