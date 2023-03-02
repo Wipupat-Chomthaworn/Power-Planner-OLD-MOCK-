@@ -22,10 +22,6 @@
             <button>Add Item</button>
         </form>
         <ul>
-            <!-- <li v-for="(item, index) in items" :key="index" >
-                Task: " {{ item.name }} " <span :class="checkDate(item)"> => Due Date Is : {{ item.dueDate }}</span>
-                <button @click="deleteItem(index)">Delete It!</button>
-            </li> -->
             <li v-for="(item, index) in filteredItems" :key="index">
                 Task: "{{ item.name }}" =>>
                 <p :class="checkDate(item)">Due Date Is : {{ item.dueDate }}</p>
@@ -115,15 +111,18 @@ export default {
             if (this.filterBy === "none") {
                 return this.sortedItems;
             } else if (this.filterBy === "complete") {
-                return this.sortedItems.filter(item => item.status === "complete");
+                return this.sortedItems.filter((item) => item.status === "complete");
             } else if (this.filterBy === "late") {
-                return this.sortedItems.filter(item => {
+                return this.sortedItems.filter((item) => {
                     let date = new Date(item.dueDate);
-                    return (item.status !== "complete" && new Date(date.getFullYear(), date.getMonth(), date.getDate()) < new Date());
+                    return (
+                        item.status !== "complete" &&
+                        new Date(date.getFullYear(), date.getMonth(), date.getDate()) <
+                        new Date()
+                    );
                 });
             }
-        }
-
+        },
     },
 };
 </script>
