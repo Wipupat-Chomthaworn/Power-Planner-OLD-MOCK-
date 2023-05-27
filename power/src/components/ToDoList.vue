@@ -16,6 +16,10 @@
             </select>
         </span>
         <form @submit.prevent="addItem">
+            <!-- <div :style="{ backgroundColor: color, width: '20px', height: '20px',borderRadius:'50%' }">
+                
+            </div> -->
+            <input type="color" v-model="selectedColor"/>
             <input v-model="newItem.name" placeholder="Add a new item" />
             <input v-model="newItem.dueDate" type="date" placeholder="Due Date" />
 
@@ -23,6 +27,7 @@
         </form>
         <ul>
             <li v-for="(item, index) in filteredItems" :key="index">
+                <!-- <p class="color-box" :style="{ backgroundColor: item.selectedColor }">" "</p> -->
                 Task: "{{ item.name }}" =>>
                 <p :class="checkDate(item)">Due Date Is : {{ item.dueDate }}</p>
                 <button v-if="!item.status" @click="completeItem(index)">
@@ -44,6 +49,7 @@ export default {
                 name: "",
                 dueDate: "",
                 statue: "",
+                selectedColor: "#f00", // default color is red
             },
             items: [],
             sortBy: "name", // default sort order is by name
@@ -136,7 +142,7 @@ export default {
 }
 
 .late {
-    color: red;
+    color: #f00;
 }
 
 #button {

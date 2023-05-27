@@ -1,6 +1,12 @@
+const express = require("express")
+const path = require("path")
+
+const app = express();
+
 import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
+// import './assets/tailwind.css'
 
 createApp(App).mount('#app')
 
